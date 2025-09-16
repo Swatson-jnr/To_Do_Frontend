@@ -1,10 +1,9 @@
 import { Circle, ClipboardCheck, Trash } from "lucide-react";
-import React from "react";
 
 const CompletedCard = ({ title, description, onDelete }) => {
   return (
     <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto mb-4">
-      {/* Header */}
+      {/* .........Header............. */}
       <div className="flex items-center gap-2 mb-2">
         <ClipboardCheck color="#A1A3AB" size={20} />
         <h1 className="text-[#ff6767] font-bold text-base sm:text-lg">
@@ -12,7 +11,7 @@ const CompletedCard = ({ title, description, onDelete }) => {
         </h1>
       </div>
 
-      {/* Card */}
+      {/* ...........Card.......... */}
       <div className="border-2 rounded p-4 border-gray-300 flex flex-col gap-2 w-full">
         <div className="flex justify-between">
           <div className="flex items-center gap-2 flex-wrap">

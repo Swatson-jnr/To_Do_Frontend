@@ -40,7 +40,6 @@ const TodoCard = ({
   return (
     <div className="w-full">
       <div className="border-2 rounded p-4 border-gray-300 flex flex-col h-full max-w-full sm:max-w-[28rem] md:max-w-[32rem] lg:max-w-[36rem]">
-        {/* Top section */}
         <div className="flex justify-between flex-wrap gap-2">
           <div className="flex items-center">
             <Circle color="blue" size={20} />
@@ -69,9 +68,6 @@ const TodoCard = ({
                   size={22}
                   className="bg-[#ff6767] p-1 rounded font-bold cursor-pointer"
                 />
-                {/* <div className="flex items-center">
-                  <video src={loader} className="w-9" loop autoPlay muted />
-                </div> */}
               </>
             )}
           </div>

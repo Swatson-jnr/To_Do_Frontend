@@ -48,14 +48,13 @@ const EditTodo = ({
   return (
     <Modal isOpen={activeModal === "edit"} onClose={() => setActiveModal(null)}>
       <div className="border-2 rounded shadow-xl border-gray-300 p-5 mx-auto my-10 w-full max-w-lg md:w-190">
-        {/* Header */}
+        {/* ..................Header.............*/}
         <div className="flex justify-between items-center mb-6">
           <h1 className="font-semibold text-lg sm:text-xl border-b-2 border-[#ff6767] pb-1">
             Edit Task
           </h1>
         </div>
 
-        {/* Form */}
         <form onSubmit={editTodo} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <label htmlFor="title" className="font-medium text-sm">
@@ -102,7 +101,7 @@ const EditTodo = ({
             />
           </div>
 
-          {/* Buttons */}
+          {/* ...............Buttons............... */}
           <div className="flex flex-col sm:flex-row justify-between gap-3 mt-4">
             <button
               type="submit"

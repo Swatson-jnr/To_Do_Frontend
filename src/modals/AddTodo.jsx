@@ -44,7 +44,7 @@ const AddTodo = ({ activeModal, setActiveModal, getAllTodos }) => {
         </div>
 
         <form onSubmit={addTodo} className="flex flex-col gap-4">
-          {/* Title */}
+          {/* ...............Title............ */}
           <div className="flex flex-col gap-1">
             <label htmlFor="title" className="font-medium">
               Title
@@ -60,7 +60,7 @@ const AddTodo = ({ activeModal, setActiveModal, getAllTodos }) => {
             />
           </div>
 
-          {/* Priority */}
+          {/* ..........Priority............... */}
           <div className="flex flex-col gap-1">
             <label htmlFor="priority" className="font-medium">
               Priority
@@ -77,7 +77,7 @@ const AddTodo = ({ activeModal, setActiveModal, getAllTodos }) => {
             </select>
           </div>
 
-          {/* Description */}
+          {/* ..............Description............. */}
           <div className="flex flex-col gap-1">
             <label htmlFor="description" className="font-medium">
               Description
@@ -92,7 +92,7 @@ const AddTodo = ({ activeModal, setActiveModal, getAllTodos }) => {
             />
           </div>
 
-          {/* Buttons */}
+          {/* ...........Buttons........... */}
           <div className="flex flex-col sm:flex-row justify-between gap-3 mt-4">
             <button
               type="submit"

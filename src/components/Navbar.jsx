@@ -5,14 +5,14 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
   return (
     <div className="bg-[#F8F8FB]">
       <div className="flex flex-wrap justify-between items-center px-4 py-3 gap-3">
-        {/* DASHBOARD */}
+        {/*.... DASHBOARD........... */}
         <div className="font-semibold text-2xl sm:text-3xl">
           <h1>
             Dash<span className="text-[#FF6767]">board</span>
           </h1>
         </div>
 
-        {/* Search bar */}
+        {/* ........Search bar.......... */}
         <div className="flex relative w-full sm:w-auto sm:flex-1 sm:max-w-md">
           <input
             type="search"
@@ -26,7 +26,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
           </button>
         </div>
 
-        {/* buttons */}
+        {/* .............buttons.................. */}
         <div className="flex gap-2">
           <button className="flex items-center justify-center bg-[#FF6767] rounded-md w-10 h-10">
             <Bell color="white" size={18} />

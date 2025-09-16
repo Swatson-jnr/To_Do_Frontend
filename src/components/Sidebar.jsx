@@ -16,11 +16,9 @@ import { apiClient } from "../api/Client";
 
 const Sidebar = ({ isOpen, onClose, className = "" }) => {
   const [userData, setUserData] = useState([]);
-  const menuItems = [
-    { icon: Puzzle, label: "Dashboard", href: "/" },
-    { icon: ClipboardCheck, label: "All Todos", href: "/all" },
-    { icon: BarChart3, label: "Completed Todos", href: "/completed-todos" },
-  ];
+
+  // menu items and their routes........
+  const menuItems = [{ icon: Puzzle, label: "Dashboard", href: "/" }];
   const navigate = useNavigate();
   const signOut = () => {
     localStorage.removeItem("token");
@@ -51,7 +49,7 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
   }, [userData]);
   return (
     <>
-      {/* Overlay for mobile */}
+      {/* ..............Overlay for mobile................... */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/40 bg-opacity-50 z-40 lg:hidden"
@@ -59,7 +57,7 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
         />
       )}
 
-      {/* Sidebar */}
+      {/* ..........Sidebar.................... */}
       <div
         className={`
     fixed top-0 left-0 h-full w-64 bg-[#ff6767] text-white z-50 
@@ -70,7 +68,7 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
     flex flex-col
   `}
       >
-        {/* Header */}
+        {/*............ Header............. */}
         <div className="flex items-center justify-between p-4 ">
           <div className="flex flex-col items-center justify-center w-[80%] mx-auto">
             <div className="bg-gray-500 p-5 rounded-full">
@@ -87,7 +85,7 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
           </button>
         </div>
 
-        {/* Menu */}
+        {/* ............Menu................ */}
         <nav className="mt-8 flex-1">
           {menuItems.map((item, index) => (
             <NavLink
@@ -101,7 +99,7 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
           ))}
         </nav>
 
-        {/* SignOut at bottom */}
+        {/* ...............SignOut at bottom....................... */}
         <div className="p-4 mt-auto">
           <button
             onClick={signOut}
