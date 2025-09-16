@@ -16,7 +16,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
         <div className="flex relative w-full sm:w-auto sm:flex-1 sm:max-w-md">
           <input
             type="search"
-            className="w-full sm:w-72 h-9 bg-white border rounded px-3 text-sm"
+            className="w-full sm:w-72 h-9 bg-white border rounded px-3 text-sm outline-none"
             placeholder="Search your task here"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

@@ -20,12 +20,8 @@ const DeleteCompleted = ({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-
-      console.log(response);
       toast.success(response.data.message);
-
       setActiveModal(null);
-
       await getAllTodos();
     } catch (error) {
       console.log(error);

@@ -17,7 +17,7 @@ import { apiClient } from "../api/Client";
 const Sidebar = ({ isOpen, onClose, className = "" }) => {
   const [userData, setUserData] = useState([]);
 
-  // menu items and their routes........
+  //....... menu items and their routes........
   const menuItems = [{ icon: Puzzle, label: "Dashboard", href: "/" }];
   const navigate = useNavigate();
   const signOut = () => {
@@ -33,7 +33,6 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response.data);
       setUserData(response.data.userData);
     } catch (error) {
       console.log(error);
@@ -44,9 +43,6 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
     getUserData();
   }, []);
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
   return (
     <>
       {/* ..............Overlay for mobile................... */}
@@ -91,7 +87,14 @@ const Sidebar = ({ isOpen, onClose, className = "" }) => {
             <NavLink
               key={index}
               to={item.href}
-              className="flex items-center px-6 py-3 text-white text-[16px] font-semibold hover:bg-white mr-7 hover:text-[#ff6767] transition-colors duration-200"
+              className={({ isActive }) =>
+                `flex items-center px-6 py-3 text-[16px] font-semibold mr-7 transition-colors duration-200 
+     ${
+       isActive
+         ? "bg-white text-[#ff6767] rounded ml-2"
+         : "text-white hover:bg-white hover:text-[#ff6767]"
+     }`
+              }
             >
               <item.icon size={20} className="mr-3" />
               {item.label}

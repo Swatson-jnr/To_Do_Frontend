@@ -24,8 +24,6 @@ const Login = () => {
           "Content-Type": "application/json",
         },
       });
-
-      console.log(response.data);
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         toast.success("Account created! Please verify your email.");
@@ -44,7 +42,6 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       const data = { email, password };
       const response = await apiClient.post("/api/auth/login", data, {
@@ -52,8 +49,6 @@ const Login = () => {
           "Content-Type": "application/json",
         },
       });
-
-      console.log(response.data);
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         toast.success("Login successful!");
@@ -68,6 +63,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+
   return (
     <div className="bg-[#ff6767] min-h-screen relative flex  items-center justify-center">
       {/* background image */}
@@ -140,14 +136,6 @@ const Login = () => {
             </div>
 
             <div className="flex flex-col  mt-2">
-              {state === "Login" ? (
-                <p
-                  onClick={() => navigate("/password-reset")}
-                  className="mb-4 text-indigo-500 cursor-pointer text-sm underline"
-                >
-                  Forgot Password?
-                </p>
-              ) : null}
               <button
                 type="submit"
                 className="bg-[#ff6767] w-30 cursor-pointer px-2 py-2 rounded font-bold text-white mt-3"

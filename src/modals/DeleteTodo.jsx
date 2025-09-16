@@ -15,7 +15,6 @@ const DeleteTodo = ({ activeModal, setActiveModal, todoId, getAllTodos }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response);
       toast.success(response.data.message);
       setActiveModal(null);
       await getAllTodos();

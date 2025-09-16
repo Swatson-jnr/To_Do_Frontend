@@ -27,7 +27,6 @@ const TodoCard = ({
         }
       );
       toast.success(response.data.message);
-      console.log(response);
       await getAllTodos();
     } catch (error) {
       console.log(error);

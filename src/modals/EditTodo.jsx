@@ -27,7 +27,6 @@ const EditTodo = ({
         },
       });
       toast.success(response.data.message);
-      console.log(response);
       setActiveModal(null);
       await getAllTodos();
     } catch (error) {
