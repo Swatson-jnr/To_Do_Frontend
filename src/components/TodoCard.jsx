@@ -2,11 +2,17 @@ import { Check, Circle, Loader, SquarePen, Trash } from "lucide-react";
 import { apiClient } from "../api/Client";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import loader from "../assets/loader.mp4";
 
-const TodoCard = ({ title, description, onEdit, onDelete, todoId }) => {
+const TodoCard = ({
+  title,
+  description,
+  onEdit,
+  onDelete,
+  todoId,
+  getAllTodos,
+}) => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const markAsDone = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -22,7 +28,7 @@ const TodoCard = ({ title, description, onEdit, onDelete, todoId }) => {
       );
       toast.success(response.data.message);
       console.log(response);
-      navigate(0);
+      await getAllTodos();
     } catch (error) {
       console.log(error);
       toast.error(error.response?.data?.message || "Something went wrong");
@@ -54,14 +60,19 @@ const TodoCard = ({ title, description, onEdit, onDelete, todoId }) => {
               className="bg-[#ff6767] p-1 rounded cursor-pointer"
             />
             {loading ? (
-              <Loader />
+              <video src={loader} className="w-9" loop autoPlay muted />
             ) : (
-              <Check
-                color="white"
-                onClick={markAsDone}
-                size={22}
-                className="bg-[#ff6767] p-1 rounded font-bold cursor-pointer"
-              />
+              <>
+                <Check
+                  color="white"
+                  onClick={markAsDone}
+                  size={22}
+                  className="bg-[#ff6767] p-1 rounded font-bold cursor-pointer"
+                />
+                {/* <div className="flex items-center">
+                  <video src={loader} className="w-9" loop autoPlay muted />
+                </div> */}
+              </>
             )}
           </div>
         </div>

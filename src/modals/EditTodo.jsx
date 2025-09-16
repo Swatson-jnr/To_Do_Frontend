@@ -4,12 +4,17 @@ import Modal from "./Modal";
 import { apiClient } from "../api/Client";
 import { toast } from "react-toastify";
 
-const EditTodo = ({ activeModal, setActiveModal, todoId, todoData }) => {
+const EditTodo = ({
+  activeModal,
+  setActiveModal,
+  todoId,
+  todoData,
+  getAllTodos,
+}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const editTodo = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -24,9 +29,7 @@ const EditTodo = ({ activeModal, setActiveModal, todoId, todoData }) => {
       toast.success(response.data.message);
       console.log(response);
       setActiveModal(null);
-      setTimeout(() => {
-        navigate(0);
-      }, 1000);
+      await getAllTodos();
     } catch (error) {
       console.log(error);
     } finally {
@@ -103,7 +106,7 @@ const EditTodo = ({ activeModal, setActiveModal, todoId, todoData }) => {
           <div className="flex flex-col sm:flex-row justify-between gap-3 mt-4">
             <button
               type="submit"
-              className="bg-[#ff6767] text-white font-semibold py-2 px-4 rounded w-full sm:w-1/2 text-center hover:bg-red-600 transition"
+              className="bg-[#ff6767] cursor-pointer text-white font-semibold py-2 px-4 rounded w-full sm:w-1/2 text-center hover:bg-red-600 transition"
               disabled={loading}
             >
               {loading ? "Updating..." : "Edit Task"}
@@ -111,7 +114,7 @@ const EditTodo = ({ activeModal, setActiveModal, todoId, todoData }) => {
             <button
               type="button"
               onClick={() => setActiveModal(null)}
-              className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded w-full sm:w-1/2 text-center hover:bg-gray-400 transition"
+              className="bg-gray-300 cursor-pointer text-gray-700 font-semibold py-2 px-4 rounded w-full sm:w-1/2 text-center hover:bg-gray-400 transition"
             >
               Cancel
             </button>

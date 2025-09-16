@@ -20,6 +20,7 @@ const Home = () => {
   const [allTodos, setAllTodos] = useState([]);
   const [userData, setUserData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTodo, setSelectedTodo] = useState(null);
 
   const getAllTodos = async () => {
     try {
@@ -28,7 +29,7 @@ const Home = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      setAllTodos(response.data.todos);
+      setAllTodos(response.data.todos.reverse());
     } catch (error) {
       console.log(error);
     }
@@ -124,10 +125,17 @@ const Home = () => {
                     key={index}
                     title={todo.title}
                     todoId={todo._id}
+                    getAllTodos={getAllTodos}
                     createdAt={todo.createdAt}
                     description={todo.description}
-                    onEdit={() => setActiveModal("edit")}
-                    onDelete={() => setActiveModal("delete")}
+                    onEdit={() => {
+                      setSelectedTodo(todo);
+                      setActiveModal("edit");
+                    }}
+                    onDelete={() => {
+                      setSelectedTodo(todo);
+                      setActiveModal("delete");
+                    }}
                   />
                 ))
               ) : (
@@ -169,12 +177,15 @@ const Home = () => {
                       key={index}
                       title={todo.title}
                       description={todo.description}
-                      onDelete={() => setActiveModal("delete")}
+                      onDelete={() => {
+                        setSelectedTodo(todo);
+                        setActiveModal("delete");
+                      }}
                     />
                   ))
                 ) : (
                   <p className="text-gray-600 text-sm sm:text-base">
-                    No completed todos yet ✅
+                    No completed todos yet
                   </p>
                 )}
               </div>
@@ -184,19 +195,26 @@ const Home = () => {
       </div>
 
       {/* ............Modals............... */}
-      <AddTodo activeModal={activeModal} setActiveModal={setActiveModal} />
-      {allTodos.map((todo, index) => (
+      <AddTodo
+        activeModal={activeModal}
+        setActiveModal={setActiveModal}
+        getAllTodos={getAllTodos}
+        setAllTodos={setAllTodos}
+      />
+      {Todos.map((todo, index) => (
         <div key={index}>
           <EditTodo
-            todoId={todo._id}
-            todoData={todo}
+            todoId={selectedTodo?._id}
+            todoData={selectedTodo}
             activeModal={activeModal}
             setActiveModal={setActiveModal}
+            getAllTodos={getAllTodos}
           />
           <DeleteTodo
+            todoId={selectedTodo?._id}
             activeModal={activeModal}
+            getAllTodos={getAllTodos}
             setActiveModal={setActiveModal}
-            todoId={todo._id}
           />
         </div>
       ))}
@@ -206,7 +224,8 @@ const Home = () => {
           key={completed._id}
           activeModal={activeModal}
           setActiveModal={setActiveModal}
-          todoId={completed._id}
+          getAllTodos={getAllTodos}
+          todoId={selectedTodo?._id}
         />
       ))}
     </>

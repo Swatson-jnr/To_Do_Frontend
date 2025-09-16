@@ -2,14 +2,13 @@ import { useState } from "react";
 import Modal from "../modals/Modal";
 import { apiClient } from "../api/Client";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
-const AddTodo = ({ activeModal, setActiveModal, setAllTodos }) => {
+const AddTodo = ({ activeModal, setActiveModal, getAllTodos }) => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Moderate");
-  const navigate = useNavigate();
+
   const addTodo = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -25,7 +24,7 @@ const AddTodo = ({ activeModal, setActiveModal, setAllTodos }) => {
       setTitle("");
       setDescription("");
       setActiveModal(null);
-      navigate(0);
+      await getAllTodos();
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -97,14 +96,14 @@ const AddTodo = ({ activeModal, setActiveModal, setAllTodos }) => {
           <div className="flex flex-col sm:flex-row justify-between gap-3 mt-4">
             <button
               type="submit"
-              className="bg-[#ff6767] text-white font-semibold py-2 px-4 rounded w-full sm:w-auto text-center"
+              className="bg-[#ff6767] cursor-pointer text-white font-semibold py-2 px-4 rounded w-full sm:w-auto text-center"
             >
               {loading ? "Adding..." : "Add Task"}
             </button>
             <button
               type="button"
               onClick={() => setActiveModal(null)}
-              className="bg-gray-400 text-white font-semibold py-2 px-4 rounded w-full sm:w-auto text-center"
+              className="bg-gray-400 cursor-pointer text-white font-semibold py-2 px-4 rounded w-full sm:w-auto text-center"
             >
               Cancel
             </button>

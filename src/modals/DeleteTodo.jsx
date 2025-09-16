@@ -3,7 +3,7 @@ import Modal from "./Modal";
 import { apiClient } from "../api/Client";
 import { toast } from "react-toastify";
 
-const DeleteTodo = ({ activeModal, setActiveModal, todoId }) => {
+const DeleteTodo = ({ activeModal, setActiveModal, todoId, getAllTodos }) => {
   const [loading, setLoading] = useState(false);
 
   const deleteTodo = async (e) => {
@@ -15,15 +15,10 @@ const DeleteTodo = ({ activeModal, setActiveModal, todoId }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-
       console.log(response);
       toast.success(response.data.message);
-
       setActiveModal(null);
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+      await getAllTodos();
     } catch (error) {
       console.log(error);
     } finally {

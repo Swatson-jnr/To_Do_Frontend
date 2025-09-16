@@ -3,7 +3,12 @@ import Modal from "../modals/Modal";
 import { apiClient } from "../api/Client";
 import { toast } from "react-toastify";
 
-const DeleteCompleted = ({ activeModal, setActiveModal, todoId }) => {
+const DeleteCompleted = ({
+  activeModal,
+  setActiveModal,
+  todoId,
+  getAllTodos,
+}) => {
   const [loading, setLoading] = useState(false);
 
   const deleteTodo = async (e) => {
@@ -21,9 +26,7 @@ const DeleteCompleted = ({ activeModal, setActiveModal, todoId }) => {
 
       setActiveModal(null);
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+      await getAllTodos();
     } catch (error) {
       console.log(error);
     } finally {
